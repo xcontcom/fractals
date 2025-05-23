@@ -59,6 +59,9 @@ fractal-monsters-evolution/
 ## Significance
 This project, created in 2017, explores the use of genetic algorithms for evolving geometric fractals through user-driven selection, predating the 2019 [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project’s automated fitness-based approach. By focusing on interactive evolution, it provides a platform for studying user-influenced emergent patterns in computational geometry. Shared on GitHub, it offers researchers and enthusiasts a tool to investigate fractal systems and evolutionary dynamics.
 
+## o_O
+To be honest, Grok and ChatGPT helped me write this summary. I insisted on keeping the "Dope as Hell!" line.
+
 ## License
 MIT License. See [LICENSE](LICENSE) for details.
 
