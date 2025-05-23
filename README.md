@@ -7,43 +7,57 @@
 ![Demo](screenshots/demo.gif)
 
 ## Overview
-The **Fractal Monsters Evolution** project, based on a 2017 Habr article, develops a system to evolve geometric fractals using a genetic algorithm. Implemented in JavaScript with HTML5 for visualization, it generates self-similar patterns by optimizing fractal parameters (e.g., transformation coefficients or recursion rules) to achieve user-defined structural or visual properties. This work extends the exploration of emergent systems in the [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project, applying genetic algorithms to navigate the complex space of fractal configurations.
+
+This project explores a single recursive fractal generation system — evolving it not through predefined fitness functions, but through direct **user interaction**. You pick the fractals you like, and the algorithm adapts.
+
+Instead of natural selection, it’s **artificial selection by hand**. Each fractal is a product of user-guided evolution, based on **angle sequences** (the genotype) applied recursively to subdivide line segments.
+
+The system creates a surprisingly deep space of visual forms.
+
+> This project was created in **2017**, two years before the [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project — and stands as its conceptual predecessor.
+
+## How It Works
+
+- The genotype is an array of angles (in degrees).
+- Starting from two points (A → B), a third point C is calculated using the current angle.
+- The recursion splits the segment in two, creating more points based on those angles.
+- The result: self-similar, often pseudo-chaotic shapes — **fractals**.
 
 ## Features
-- **Genetic Algorithm Optimization**: Evolves fractal parameters using selection, crossover, and mutation (configurable rates, e.g., 5–25%) to target specific patterns or behaviors within a population of fractal rules.
-- **Fractal Generation**: Produces geometric fractals via iterative methods (e.g., iterated function systems or L-systems), with adjustable parameters such as recursion depth or angles.
-- **Interactive Visualization**: Renders fractals in a web browser using HTML5, with a Windows 98-style interface.
-- **Manual Fractal Design**: Supports user-defined fractal construction via mouse input (`2d.html`, `2d.js`).
-- **Local Storage**: Persists fractal parameters and evolutionary data in browser local storage for seamless experimentation.
-- **3D Fractal Experiments**: Includes exploratory code (`geom3d/`) for generating three-dimensional fractal structures.
+- **Genetic Algorithm with User Selection**: Evolves fractal angles (genotype) using crossover and mutation (e.g., 20% mutation rate), with users manually selecting preferred fractals to guide evolution across populations (e.g., 60 fractals, 3 populations, 20 per population).
+- **Fractal Generation**: Produces fractals via a recursive geometric method starting with two points A and B, computing a third point C using an angle CAB, and recursively splitting into segments AC and CB with new angles.
+- **Interactive Visualization**: Renders fractals in a web browser using HTML5 canvas, with controls for evolving populations and inspecting patterns.
+- **Manual Fractal Design**: Supports user-defined fractal creation (`2d.html`, `2d.js`) by adding or editing angles, with mouse-based dynamic visualization of the evolving fractal.
+- **Local Storage Persistence**: Stores populations and fractal parameters in browser local storage, enabling users to resume evolution sessions after closing the browser.
+- **3D Fractal Experiments**: Includes advanced 3D fractal generation in `geom3d/`, extending the recursive method to three-dimensional space with mouse-driven rotation; while the PHP backend is legacy, the 3D visualization remains a significant feature.
 - **Dope as Hell!**: I mean, c'mon! Check out the live demo. All those buttons are win98 style, and all those fractals have parent trees. o_O
 
 ## Project Structure
 ```
 fractal-monsters-evolution/
-├── css/                 # Styling for the Windows 98-style interface
-├── geom3d/              # Experimental code for 3D fractals
+├── css/                 # Styling for the interface
+├── geom3d/              # Code for 3D fractal generation (with legacy PHP backend)
 ├── 2d.html              # Interface for building fractals with mouse input
 ├── 2d.js                # Logic for mouse-based fractal construction
-├── draw.js              # Fractal drawing and rendering functions
+├── draw.js              # Fractal drawing and recursive generation functions
 ├── index.html           # Main interface for fractal visualization and evolution
-├── init.js              # Genetic algorithm and fractal generation logic
+├── init.js              # Genetic algorithm and population management logic
 ├── screenshots/         # Sample fractal images or GIFs
 │   └── demo.gif
 └── README.md            # Project documentation
 ```
 
 ## Technical Details
-- **Genetic Algorithm**: Implements selection, crossover, and mutation to evolve fractal parameters, encoded as genes, optimizing for user-specified fitness criteria.
-- **Fractal Algorithms**: Generates patterns using iterative methods (e.g., IFS, L-systems), with parameters adjustable via genetic evolution or manual input.
-- **Visualization**: Uses HTML5 canvas for browser-based rendering, with a Windows 98-style UI for intuitive interaction.
-- **Modularity**: Separates fractal generation (`init.js`), rendering (`draw.js`), and manual design (`2d.js`) from interfaces (`index.html`, `2d.html`).
-- **Local Storage**: Stores fractal parameters and evolutionary data in browser local storage for persistence.
-- **3D Experiments**: Includes preliminary code in `geom3d/` for extending fractals to three-dimensional spaces.
+- **Genetic Algorithm**: Implements crossover and mutation to evolve angles defining fractal geometry, with evolution driven by user selection rather than a predefined fitness function.
+- **Fractal Algorithm**: Uses a recursive geometric method starting with points A and B, computing point C with an angle CAB (genotype), and splitting into segments AC and CB, repeating with new angles up to a specified depth.
+- **Visualization**: Renders fractals on an HTML5 canvas, with a simple Win98-inspired interface for user interaction.
+- **Modularity**: Separates fractal generation (`draw.js`), evolution logic (`init.js`), and manual design (`2d.js`) from interfaces (`index.html`, `2d.html`).
+- **Local Storage**: Persists population data and fractal parameters in browser local storage for continuity across sessions.
+- **3D Fractal Generation**: Extends the recursive method to 3D in `geom3d/`, using angle pairs to define rotations around axes; includes mouse-driven rotation for dynamic viewing, though the PHP backend is legacy.
 - **Output**: Supports exporting fractal images for analysis or documentation.
 
 ## Significance
-This project investigates the application of genetic algorithms to evolve geometric fractals, focusing on their structural properties and emergent patterns. By optimizing fractal parameters, it explores a vast configuration space, complementing the rule-based evolution in the [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project. Shared on GitHub, it provides a framework for researchers and enthusiasts to study computational geometry and evolutionary algorithms.
+This project, created in 2017, explores the use of genetic algorithms for evolving geometric fractals through user-driven selection, predating the 2019 [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project’s automated fitness-based approach. By focusing on interactive evolution, it provides a platform for studying user-influenced emergent patterns in computational geometry. Shared on GitHub, it offers researchers and enthusiasts a tool to investigate fractal systems and evolutionary dynamics.
 
 ## License
 MIT License. See [LICENSE](LICENSE) for details.
