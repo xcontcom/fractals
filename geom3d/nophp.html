@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D Fractals</title>
+	<meta name="description" content="Compose the most beautiful fractal with the help of genetic algorithms. The algorithm will learn to understand your preferences.">
+	<meta name="keywords" content="Genetics, fractal, genetic algorithms, artificial intelligence, evolution">
+	<style>
+		canvas { background: black; display: block; margin: auto; }
+		.footer_menu { text-align: center; margin-top: 20px; }
+		.footer_menu ul { list-style: none; padding: 0; }
+		.footer_menu li { display: inline-block; margin: 0 10px; }
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+	<br><br>
+	<input type="submit" value="Generate Random" onclick="selecter()"><br><br>
+	<span id="logger"></span>
+
+	<div class="footer_menu">
+		<ul>
+			<li><a href="http://fractal.xcont.com/">Back</a></li>
+			<li><a href="http://fractal.xcont.com/2d.html">Create fractal using mouse</a></li>
+			<li><a href="http://xcont.com/">Fractals in prime numbers</a></li>
+		</ul>
+	</div>
+	<div id="footer"></div>
+
+	<script>
+		let canvas, canvasData, context, massiv, angls;
+
+		function generateRandomAngles() {
+			const angles = [];
+			const r = Math.floor(Math.random() * 8) + 1;
+			for (let i = 0; i < r; i++) {
+				angles.push([5 * (1 + Math.floor(Math.random() * 17)), 15 * Math.floor(Math.random() * 25)]);
+			}
+			return angles;
+		}
+
+		function getAnglesFromURL() {
+			const hash = window.location.hash.slice(1); // remove leading '#'
+			const fallback = [[45,180],[-45,90],[-45,90],[45,180]];
+
+			if (!hash) return fallback;
+
+			const parts = hash.split('/').filter(Boolean);
+			const angles = [];
+
+			for (let i = 0; i < parts.length; i += 2) {
+				const a = parseInt(parts[i], 10);
+				const b = parseInt(parts[i + 1], 10);
+				if (!isNaN(a) && !isNaN(b)) {
+					angles.push([a, b]);
+				}
+			}
+
+			return angles.length > 0 ? angles : fallback;
+		}
+
+		function selecter() {
+			angls = generateRandomAngles();
+			massiv = sfera(angls);
+			droveLines(canvas, 0, 0, massiv);
+			const logger = document.getElementById('logger');
+			logger.innerHTML = '';
+			let link = angls.map(pair => pair.join('/')).join('/');
+			logger.innerHTML = '<a href="nophp.html#'+link+'">'+link+'</a>';
+		}
+
+		function rotate(v, p, cos, sin, mcos) {
+			let [x, y, z] = v;
+			let [xp, yp, zp] = p;
+			const a11 = mcos*x*x+cos, a12 = mcos*x*y-sin*z, a13 = mcos*x*z+sin*y;
+			const a21 = mcos*x*y+sin*z, a22 = mcos*y*y+cos, a23 = mcos*z*y-sin*x;
+			const a31 = mcos*x*z-sin*y, a32 = mcos*z*y+sin*x, a33 = mcos*z*z+cos;
+			const xx = xp*a11 + yp*a12 + zp*a13;
+			const yy = xp*a21 + yp*a22 + zp*a23;
+			const zz = xp*a31 + yp*a32 + zp*a33;
+			return [xx, yy, zz];
+		}
+
+		function find_point(a, b, c, angls) {
+			const [alfa, betta] = angls.map(a => a * Math.PI / 180);
+			const [x1, y1, z1] = a, [x2, y2, z2] = b, [x3, y3, z3] = c;
+			const [xa, ya, za] = [x2 - x1, y2 - y1, z2 - z1];
+			const [xc, yc, zc] = [x3 - x1, y3 - y1, z3 - z1];
+			const xv = ya*zc - za*yc, yv = -(xa*zc - za*xc), zv = xa*yc - ya*xc;
+			const r = Math.sqrt(xv**2 + yv**2 + zv**2);
+			let vector = [xv/r, yv/r, zv/r];
+			let point = [xa, ya, za];
+			let d = rotate(vector, point, Math.cos(alfa), Math.sin(alfa), 1 - Math.cos(alfa));
+			const r2 = Math.sqrt(xa**2 + ya**2 + za**2);
+			vector = [xa/r2, ya/r2, za/r2];
+			point = d.map(v => v * Math.cos(alfa));
+			d = rotate(vector, point, Math.cos(betta), Math.sin(betta), 1 - Math.cos(betta));
+			return [d[0]+x1, d[1]+y1, d[2]+z1];
+		}
+
+		function recurs(array, n, a, b, d, angls) {
+			if (n === 0) return array;
+			array[0][n] = array[0][n] || 0;
+			d = find_point(a, b, d, angls[array[0][n]]);
+			array[1].push(d);
+			array[0][n]++;
+			if (array[0][n] === angls.length) array[0][n] = 0;
+			recurs(array, n-1, a, d, b, angls);
+			recurs(array, n-1, d, b, a, angls);
+			return array;
+		}
+
+		function sfera(angls) {
+			let base = [[0,10,0],[0,-10,0],[0,0,-10]];
+			const safeAngle = (Array.isArray(angls) && angls.length > 0) ? angls[0][0] : 45;
+			base[2] = find_point(base[0], base[1], base[2], [safeAngle, 0]);
+			const m1 = [], m2 = [];
+			const d = recurs([m1,m2], 15, base[0], base[1], base[2], angls);
+			return base.concat(d[1]);
+		}
+
+		function droveLines(canvas, xMouse, yMouse, massiv) {
+			clearCanvas();
+			const xCenter = canvas.width / 2, yCenter = canvas.height / 2, focus = 800;
+			const alfa = yMouse * Math.PI / 180, betta = xMouse * Math.PI / 180;
+			const cosa = Math.cos(alfa), sina = Math.sin(alfa);
+			const cosb = Math.cos(betta), sinb = Math.sin(betta);
+
+			for (const p of massiv) {
+				let [x, y, z] = p;
+				let yy = y * cosa - z * sina;
+				let zz = z * cosa + y * sina;
+				z = zz;
+				let xx = x * cosb + z * sinb;
+				zz = z * cosb - x * sinb;
+				y = yy; x = xx; z = zz + 64;
+				xx = focus * x / z + xCenter;
+				yy = focus * y / z + yCenter;
+				drawPixel(Math.floor(xx), Math.floor(yy), 255, 255, 255, 255);
+			}
+			updateCanvas();
+		}
+
+		function drawPixel(x, y, r, g, b, a) {
+			const index = (x + y * canvas.width) * 4;
+			canvasData.data[index] = r;
+			canvasData.data[index + 1] = g;
+			canvasData.data[index + 2] = b;
+			canvasData.data[index + 3] = a;
+		}
+
+		function updateCanvas() {
+			context.putImageData(canvasData, 0, 0);
+		}
+
+		function clearCanvas() {
+			for (let i = 0; i < canvasData.data.length; i += 4) {
+				canvasData.data[i] = 0;
+				canvasData.data[i + 1] = 0;
+				canvasData.data[i + 2] = 0;
+				canvasData.data[i + 3] = 255;
+			}
+			updateCanvas();
+		}
+
+		window.onload = () => {
+			canvas = document.getElementById('myCanvas');
+			context = canvas.getContext('2d');
+			canvas.width = 600;
+			canvas.height = 600;
+			canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
+			angls = getAnglesFromURL();
+			massiv = sfera(angls);
+			droveLines(canvas, 0, 0, massiv);
+
+			canvas.addEventListener('mousemove', evt => {
+				const rect = canvas.getBoundingClientRect();
+				const x = evt.clientX - rect.left;
+				const y = evt.clientY - rect.top;
+				droveLines(canvas, x, y, massiv);
+			});
+		}
+	</script>
+</body>
+</html>
