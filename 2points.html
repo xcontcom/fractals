@@ -1,0 +1,78 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fractals. Genetic algorithms. Evolution</title>
+<meta name="description" content="On this site, with the help of genetic algorithms, you will be able to compose the most beautiful fractal. Algorithm will learn to understand your preferences" />
+<meta name="keywords" content="Genetics, fractal, genetic algorithms, artificial intelligence, evolution" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="draw.js"></script>
+<script type="text/javascript" src="2points.js"></script>
+<script>var iteration=10;</script>
+
+</head>
+<body>
+<div class="header">
+	<div id="mp20">Draw mode:
+	<select id="drawmode" onchange="changeDrawMode();">
+		<option value="0" selected="null">default</option>
+		<option value="1">mode 1</option>
+		<option value="2">mode 2</option>
+		<option value="3">mode 3</option>
+		<option value="4">mode 4</option>
+		<option value="5">mode 5</option>
+		<option value="6">mode 6</option>
+	</select>
+	</div>
+	<div id="mp1">
+		Select angle that you want to change using mouse (MouseX / MouseY / None). Click on canvas. Right text option - angle multiplier.
+	</div>
+</div>
+<div id="clear"></div>
+<div class="fractal" id="myid">
+	<div class="leftpart">
+		<div class="rightsettings" id="settings">
+			<div class="inputblocks">
+				<input type="button" value="+" onclick="addangles();" />
+				<input type="button" value="-" onclick="deleteangles();" />
+			</div>
+			<div class="inputblocks" id="block0">
+				<input type="text" name="anglesinput[]" value="45" oninput="txtchenged(0, this.value);" />
+				<input name="angles0" type="radio" value="x" checked="null" onclick="radiochenged(0, 0);" />
+				<div>MouseX</div>
+				<input name="angles0" type="radio" value="y" onclick="radiochenged(0, 1);" />
+				<div>MouseY</div>
+				<input name="angles0" type="radio" value="none" onclick="radiochenged(0, 2);" />
+				<div>None</div>
+				<input type="text" name="anglesincrease[]" value="1" oninput="txtincrchenged(0, this.value);" />
+			</div>
+			<div class="inputblocks" id="block1">
+				<input type="text" name="anglesinput[]" value="-45" oninput="txtchenged(1, this.value);" />
+				<input name="angles1" type="radio" value="x" onclick="radiochenged(1, 0);" />
+				<div>MouseX</div>
+				<input name="angles1" type="radio" value="y" checked="null" onclick="radiochenged(1, 1);" />
+				<div>MouseY</div>
+				<input name="angles1" type="radio" value="none" onclick="radiochenged(1, 2);" />
+				<div>None</div>
+				<input type="text" name="anglesincrease[]" value="1" oninput="txtincrchenged(1, this.value);" />
+			</div>
+		</div>
+	</div>
+	<div class="rightpart" onclick="addevent();">
+		<canvas id="myCanvas"></canvas>
+	</div>
+</div>
+<div id="clear"></div>
+<div class="footer_menu">
+	<ul>
+		<li><a href="http://fractal.xcont.com/">Back</a></li>
+		<li><a href="http://fractal.xcont.com/geom3d/">3D geometric fractal</a></li>
+		<li><a href="http://xcont.com/">Fractals in prime numbers</a></li>
+	</ul>
+</div>
+<script>
+	init();
+</script>
+
+</body>
+</html>
