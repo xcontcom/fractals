@@ -21,13 +21,15 @@ The **Fractal Monsters Evolution** project, based on a 2017 Habr article, develo
 ## Project Structure
 ```
 fractal-monsters-evolution/
-├── css/                 # Styling for the interface
-├── geom3d/              # For experiments with 3d fractals
-├── 2d.html              # Build fractal using mouse, html file
-├── 2d.js                # Build fractal using mouse, js file
-├── draw.js              # Fractal drawing functions.
-├── index.html           # Browser interface for fractal visualization
-├── init.js              # Logic for fractal generation and genetic algorithm
+├── css/                 # Styling for the Windows 98-style interface
+├── geom3d/              # Experimental code for 3D fractals
+├── 2d.html              # Interface for building fractals with mouse input
+├── 2d.js                # Logic for mouse-based fractal construction
+├── draw.js              # Fractal drawing and rendering functions
+├── index.html           # Main interface for fractal visualization and evolution
+├── init.js              # Genetic algorithm and fractal generation logic
+├── screenshots/         # Sample fractal images or GIFs
+│   └── demo.gif
 └── README.md            # Project documentation
 ```
 
