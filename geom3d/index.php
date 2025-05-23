@@ -264,17 +264,6 @@ if(isset($_POST['num'])){
 		</ul>
 	</div>
 	<div id="footer">
-		<br><!--LiveInternet counter--><script type="text/javascript"><!--
-		document.write("<a href='http://www.liveinternet.ru/click' "+
-		"target=_blank><img src='//counter.yadro.ru/hit?t26.1;r"+
-		escape(document.referrer)+((typeof(screen)=="undefined")?"":
-		";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-		screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-		";"+Math.random()+
-		"' alt='' title='LiveInternet: показано число посетителей за"+
-		" сегоднЯ' "+
-		"border='0' width='0' height='0'><\/a>")
-		//--></script><!--/LiveInternet-->
 	</div>
 	</body>
 </html>
