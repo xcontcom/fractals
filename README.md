@@ -34,7 +34,7 @@ fractal-monsters-evolution/
 - **Genetic Algorithm**: Implements selection, crossover, and mutation to evolve fractal parameters, optimizing for user-specified fitness criteria within a population of candidate fractals.
 - **Fractal Algorithms**: Generates patterns using iterative methods (e.g., IFS, L-systems), with parameters encoded as genes for evolution.
 - **Visualization**: Uses HTML5 for browser-based rendering of fractals, ensuring compatibility and efficient display.
-- **Modularity**: Separates fractal generation and evolution logic (`fractals.js`) from the interface (`index.html`) for ease of modification.
+- **Modularity**: Separates fractal generation and evolution logic (`draw.js`, `init.js`) from the interface (`index.html`) for ease of modification.
 - **Output**: Supports exporting fractal images for analysis or documentation.
 
 ## Significance
