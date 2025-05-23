@@ -115,7 +115,7 @@
 			const safeAngle = (Array.isArray(angls) && angls.length > 0) ? angls[0][0] : 45;
 			base[2] = find_point(base[0], base[1], base[2], [safeAngle, 0]);
 			const m1 = [], m2 = [];
-			const d = recurs([m1,m2], 15, base[0], base[1], base[2], angls);
+			const d = recurs([m1,m2], 18, base[0], base[1], base[2], angls);
 			return base.concat(d[1]);
 		}
 
