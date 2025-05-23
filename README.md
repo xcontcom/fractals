@@ -16,6 +16,7 @@ The **Fractal Monsters Evolution** project, based on a 2017 Habr article, develo
 - **Flexible Fitness Functions**: Allows user-defined criteria to guide fractal evolution, such as matching target geometries or optimizing visual complexity.
 - **Parameter Exploration**: Enables manual adjustment of fractal parameters to study diverse pattern outcomes.
 - **Local storage**: Everything stored in local sorage.
+- **Dope as Hell!**: I mean, c'mon! Check out the live demo. All those buttons are win98 style, and all those fractals have parent trees. o_O
 
 ## Project Structure
 ```
