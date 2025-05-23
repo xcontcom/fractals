@@ -1,12 +1,10 @@
 # Fractal Monsters Evolution
 
-
-![Fractal Demo](images/fractal_demo.gif)
-
 [Original Article](https://habr.com/ru/articles/328568/) 
 
 [Live demo](https://fractal.xcont.com/)
 
+![demo](images/fractal_demo.gif)
 
 ## Overview
 The **Fractal Monsters Evolution** project, based on a 2017 Habr article, develops a system to evolve geometric fractals using a genetic algorithm. Implemented in JavaScript with HTML5 for visualization, it generates self-similar patterns by optimizing fractal parameters (e.g., transformation coefficients or recursion rules) to achieve user-defined structural or visual properties. This work extends the exploration of emergent systems in the [Cellular Automata Evolution](https://github.com/xcontcom/cellular-automata-evolution) project, applying genetic algorithms to navigate the complex space of fractal configurations.
