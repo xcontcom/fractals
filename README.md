@@ -15,17 +15,18 @@ The **Fractal Monsters Evolution** project, based on a 2017 Habr article, develo
 - **Visualization**: Displays evolved fractals in a web browser using HTML5, supporting real-time inspection of patterns.
 - **Flexible Fitness Functions**: Allows user-defined criteria to guide fractal evolution, such as matching target geometries or optimizing visual complexity.
 - **Parameter Exploration**: Enables manual adjustment of fractal parameters to study diverse pattern outcomes.
+- **Local storage**: Everything stored in local sorage.
 
 ## Project Structure
 ```
 fractal-monsters-evolution/
-├── docs/
-│   └── article.md       # Summary of 2017 Habr article
+├── css/                 # Styling for the interface
+├── geom3d/              # For experiments with 3d fractals
+├── 2d.html              # Build fractal using mouse, html file
+├── 2d.js                # Build fractal using mouse, js file
+├── draw.js              # Fractal drawing functions.
 ├── index.html           # Browser interface for fractal visualization
-├── fractals.js          # Logic for fractal generation and genetic algorithm
-├── style.css            # Styling for the interface
-├── screenshots/         # Sample fractal images
-│   └── fractal_demo.png
+├── init.js              # Logic for fractal generation and genetic algorithm
 └── README.md            # Project documentation
 ```
 
