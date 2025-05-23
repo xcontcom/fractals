@@ -39,6 +39,8 @@ fractal-monsters-evolution/
 ├── geom3d/              # Code for 3D fractal generation (with legacy PHP backend)
 ├── 2d.html              # Interface for building fractals with mouse input
 ├── 2d.js                # Logic for mouse-based fractal construction
+├── 2points.html         # Same as 2d.html, but uses quadrilaterals instead of triangles
+├── draw2points.js       # Drawing functions for quadrilaterals fractals
 ├── draw.js              # Fractal drawing and recursive generation functions
 ├── index.html           # Main interface for fractal visualization and evolution
 ├── init.js              # Genetic algorithm and population management logic
