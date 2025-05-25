@@ -1,6 +1,7 @@
 # Fractal Monsters Evolution
 
-[Original Article](https://habr.com/ru/articles/328568/) 
+[Original Article](https://habr.com/ru/articles/328568/) (Russian language)
+[Translated Article](https://github.com/xcontcom/fractals/blob/master/docs/article.md) (Engilsh)
 
 [Live demo](https://fractal.xcont.com/)
 
