@@ -29,7 +29,7 @@ At iteration 14, this curve looks like this:
 
 More clearly in JavaScript:
 
-```
+```javascript
   <canvas id="myCanvas"></canvas>
   <script>
     window.onload=function(){
@@ -69,7 +69,7 @@ At iteration 14, this curve looks like this:
 
 Modified fragment of the source code
 
-```
+```javascript
       }else{
         angle2=angle*k; // <-
         var xx=Math.cos(angle2)*((x1-x0)*Math.cos(angle2)-(y1-y0)*Math.sin(angle2))+x0;
@@ -87,7 +87,7 @@ And here our inquisitive mind starts asking questions. What if we try using othe
 
 The final version of the function
 
-```
+```javascript
     function recurs(context, arr, position, n, x0, y0, x1, y1){
       if (n==0){
         context.fillRect(x1,y1, 1,1);
@@ -120,7 +120,7 @@ If the dots are inside (or outside) the circle, the fractal is too compressed (o
 
 With this cosine we align the dots along the circle:
 
-```
+```javascript
 var xx=Math.cos(arr[position[n]])* ...
 var yy=Math.cos(arr[position[n]])* ...
 ```
@@ -274,7 +274,7 @@ Each stage is more clearly in JavaScript.
 
 Generating angles
 
-```
+```javascript
 function randomangl(min, max, step){
   if(step==0) step=1;
   var rand=Math.floor(Math.random() * (max/step - min/step + 1)) + min/step;
@@ -299,7 +299,7 @@ We get the same fractal [45°], only in the place where we try to draw 0° — t
 
 Create the initial population
 
-```
+```javascript
 population=[];
 fitness=[];
 for(var n=anglemin; n<=anglemax; n++){
@@ -334,7 +334,7 @@ We call the function that draws two random fractals:
 
 Draw two random fractals
 
-```
+```javascript
 function get2fractals(){
   PopulationNumber=Math.floor(Math.random() * (anglemax - anglemin + 1))+anglemin;
   drawcanvas(1);
@@ -372,7 +372,7 @@ When the user clicks the Select button next to the fractal they like, we call th
 
 Select
 
-```
+```javascript
 function selecter(n){
 	fitness[PopulationNumber][FractalNumber[n]]++;
 	get2fractals();
@@ -387,7 +387,7 @@ We will assume that the user was conscientious and made no fewer choices than th
 
 Crossing and mutations
 
-```
+```javascript
 function sortf(a, b) {
   if (a[1] < b[1]) return 1;
   else if (a[1] > b[1]) return -1;
@@ -478,7 +478,7 @@ The exchange option is available. This option implements a model of migration of
 
 Migration model
 
-```
+```javascript
 if(exchange){
   var n=anglemin;
   while(n<population.length){
