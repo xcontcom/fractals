@@ -34,6 +34,8 @@ The system creates a surprisingly deep space of visual forms.
 - **3D Fractal Experiments**: Includes advanced 3D fractal generation in `geom3d/`, extending the recursive method to three-dimensional space with mouse-driven rotation; while the PHP backend is legacy, the 3D visualization remains a significant feature.
 - **Dope as Hell!**: I mean, c'mon! Check out the live demo. All those buttons are win98 style, and all those fractals have parent trees. o_O
 
+![parent tree](screenshots/preview.png)
+
 ## Project Structure
 ```
 fractal-monsters-evolution/
