@@ -510,7 +510,7 @@ If the Exchanges checkbox is set, one random individual with a 50% probability c
 
 It remains to add bells and whistles (css buttons, saving the entire process in localStorage, displaying the Parents Tree ...).
 
-You can run it in a browser by going to the [project website](https://fractal.xcont.com/)
+You can run it in a browser by going to the **[project website](https://fractal.xcont.com/)**
 
 The result of my selections is in the picture at the beginning of the publication.
 
@@ -518,7 +518,7 @@ And finally, I will add that 2D is good, but 3D is even better!
 
 ![picture](images/17.gif)
 
-You can rotate the fractal in three dimensions with your mouse [here](https://fractal.xcont.com/geom3d/). After a slash, enter the angle pairs /alpha/beta/alpa/beta/… in the address bar.
+You can rotate the fractal in three dimensions with your mouse **[here](https://fractal.xcont.com/geom3d/)**. After a slash, enter the angle pairs /alpha/beta/alpa/beta/… in the address bar.
 
 ![picture](images/18.png)
 
